@@ -27,12 +27,12 @@ jobs:
       with:
         node-version: '18'
     - name: Install dependencies
-      run: npm install
+    - run: npm install
     - name: Start MySQL
-      run: sudo /etc/init.d/mysql start
-      name: Install client mysql
-      run: sudo apt install mysql-client
-      name: Criar Tabelas
-      run: mysql - h localhost -u root -p mamae@123 usersdb < estrutura.sql
+    - run: sudo /etc/init.d/mysql start
+    - name: Install client mysql
+    - run: sudo apt install mysql-client
+    - name: Criar Tabelas
+    - run: mysql - h localhost -u root -p mamae@123 usersdb < estrutura.sql
     - name: Run tests
-      run: npm test
+    - run: npm test
