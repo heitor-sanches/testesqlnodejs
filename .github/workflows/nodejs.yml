@@ -29,9 +29,9 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Start MySQL
-      run: sudo /etc/init.d/mysql start
+      run: /etc/init.d/mysql start
     - name: Install client mysql
-      run: sudo apt install mysql-client
+      run: apt install mysql-client
     - name: Criar Tabelas
       run: mysql - h localhost -u user1 -p mamae@123 usersdb < estrutura.sql
     - name: Run tests
