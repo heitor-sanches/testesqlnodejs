@@ -14,13 +14,14 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_USER: user1
           MYSQL_ROOT_PASSWORD: ma123
           MYSQL_DATABASE: usersdb
         ports:
           - 3306:3306
 
     steps:
+    - name: Configure MySQL permissions
+        run: mysql -h 127.0.0.1 --port 3306 -u root -pma123 -e "ALTER USER 'root'@'%' IDENTIFIED BY 'ma123'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;"
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
@@ -33,6 +34,10 @@ jobs:
     - name: Install client mysql
       run: apt install mysql-client
     - name: Criar Tabelas
-      run: mysql - h localhost -u user1 -p mamae@123 usersdb < estrutura.sql
+      run: mysql -h 127.0.0.1 --port3306 -u user1 -p ma123 usersdb < estrutura.sql
     - name: Run tests
+    env:
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: ma123
+          MYSQL_DATABASE: usersdb
       run: npm test
