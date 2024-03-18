@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Configure MySQL permissions
-        run: mysql -h 127.0.0.1 --port 3306 -u root -pma123 -e "ALTER USER 'root'@'%' IDENTIFIED BY 'ma123'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;"
+      run: mysql -h 127.0.0.1 --port 3306 -u root -pma123 -e "ALTER USER 'root'@'%' IDENTIFIED BY 'ma123'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;"
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
